@@ -1,0 +1,110 @@
+<?php
+	include_once "../inc/head.php";
+?>
+<style>
+	.help-text {
+		font-size: 2.2rem;
+		/* font-weight: 500; */
+		line-height: 1.6;
+		letter-spacing: -1.65px;
+	}
+
+	.help-text.text-deepblue {
+		font-weight: bold !important;
+	}
+
+	.sign {
+		margin-top: 30px;
+		text-align: right;
+		font-size: 2rem;
+	}
+	.sign img {
+		margin-left: 10px;
+		margin-top: -5px;
+	}
+
+	.img-intro {
+		padding: 70px 0 90px;
+	}
+
+	@media screen and (max-width:1023px) {
+		.help-text {
+			font-size: 3.6rem;
+		}
+
+		.sign {
+			font-size: 2.9rem;
+		}
+	}
+</style>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php"?>
+		<section id="container" class="sub">
+			<div id="sub-bnnr">
+				<h2 class="text">센터안내</h2>
+				<img data-index="1" data-index2="1" src="/resource/images/sub-bnnr01.png" alt="">
+			</div>
+			<!-- //end .sub-bnnr -->
+
+			<?php include_once "../inc/location.php"?>
+
+			<div class="cont-tit">
+				<h3>인사말</h3>
+			</div>
+			<div class="s-inner">
+				<div class="tabMenu">
+					<p class="mo-show"><a href="#none">병원장 인사말</a></p>
+					<ul>
+						<li class="active"><a href="page01-1.html">병원장 인사말</a></li>
+						<li><a href="page01.html">센터장 인사말</a></li>
+					</ul>
+				</div>
+				<div class="boss-tit">
+					<div class="text">
+						<h3>
+							설립자와의<br>
+							<b>두 가지 약속</b>
+						</h3>
+						<p>“가난한 환자를 돌려보내지 마라”</p>
+						<p>“세계 최고의 재활병원을 만들라”</p>
+					</div>
+					<img class="boss-bg" src="http://www.seoulrh.com/resource/images/boss-bg.png" alt="">
+					<img src="http://www.seoulrh.com/resource/images/boss.png" alt="">
+				</div>
+				<div class="text-box" style="padding-top: 0;">
+					<p class="help-text" style="color:#65bb00">
+						<b>서울특별시북부지역장애인보건의료센터 <br>홈페이지를 방문해주신 여러분을 진심으로 환영합니다.</b>
+					</p>
+					<p class="help-text">
+						안녕하세요.
+					</p>
+					<p class="help-text">
+						서울특별시북부지역장애인보건의료센터를 지정 받은 서울재활병원 병원장 이지선입니다.
+					</p>
+					<p class="help-text">
+						저희 센터는 「장애인 건강권 및 의료접근성 보장에 관한 법률」에 따라 <br class="mo-hide">2019. 04월 지정되어 서울시 북부 14개 구 장애인들을 위해 다양한 사업을 추진해오고 있습니다. <br>
+						지역사회 장애인들의 건강하고 행복한 삶을 위해 센터 직원들과 병원 250명의 직원들이 언제나 여러분과 함께 하겠습니다. <br>
+						서울시 북부 각 구의 보건, 의료, 복지기관과 전문가들이 한 팀이 되어 여러분의 필요에 성실히 응답하며 여러분을 지원하는 든든한 공동체를 이루어 가겠습니다. <br>
+						언제든지 가까운 이웃처럼 편하게 들러주세요.
+					</p>
+					<p class="help-text">
+						감사합니다.
+					</p>
+					<p class="help-text sign">
+						서울재활병원장 &nbsp;
+						<img src="http://www.seoulrh.com/resource/images/sign.png" alt="">
+					</p>
+				</div>
+			</div>
+			<!-- //end .s-inner -->
+		</section>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/footer.php"?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

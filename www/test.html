@@ -1,0 +1,538 @@
+<?php
+	include_once  './_init.php';
+	include_once $GP -> INC_WWW . '/head.php';
+	//include_once $GP -> INC_WWW . '/count_inc.php';
+    include_once $GP -> HOME."main_lib/main_proc.php";   
+
+
+    $Main_Notice = Main_Notice(10, 2);//공지사항 리스트
+	$Main_Notice2 = Main_Notice(20 , 8);//공지사항 썸네일
+	$Main_Notice3 = Main_Notice(30 , 3);//건강복지 소식
+
+	$Main_Slide = Main_Slide();//메인 슬라이드
+?>
+<body>
+    <div class="div-video" style="display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+">
+<div class="video">	
+    <div style="text-align:right;">
+        <a style="font-size : 22px;
+        color: #fff;
+        padding: 10px; cursor: pointer;" class="btn-close">x</a>
+    </div>
+    <iframe width="760" height="515" src="https://www.youtube.com/embed/00cyGE6-H1I?si=bun3MY0pxN548Tqs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <!--<video src="https://drive.google.com/uc?export=download&id=1w3pmeNZDLrlp43y8rW4SnHrNZEdhLkip" autoplay controls loop muted type="video/mp4"></video>
+    
+        <video style="width: 700; height: 400;" preload="auto" controls>
+        <source src="https://drive.google.com/uc?export=download&id=1w3pmeNZDLrlp43y8rW4SnHrNZEdhLkip" type='video/mp4'>
+     </video>-->
+</div>
+</div>
+	<div id="wrap">
+		<?php include_once $GP -> INC_WWW . '/header.php'; ?>
+		<section id="container">
+			<div id="main-slide" class="swiper-container">
+				<ul class="swiper-wrapper">
+					<?=$Main_Slide?>
+				</ul>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+				<!-- Add Arrows -->
+				<!-- <div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div> -->
+			</div>
+			<!-- //end #main-slide -->
+			
+			<div id="main-center">
+				<div class="cont-tit bar">
+					<h3 class="test-utube">센터소식</h3>
+					<p>센터의 다양한 활동과 <br class="mo-show">소식을 공유하여 소통합니다</p>
+				</div>
+				<!-- <div class="noti-list inner">
+					<?=$Main_Notice?>
+				</div> -->
+				<!-- //end .noti-list -->
+				<div class="inner">
+					<!-- slide -->
+					<div id="main-center-list" class="swiper-container">
+						<ul class="swiper-wrapper">
+							<?=$Main_Notice2?>
+						</ul>
+						<!-- <div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div> -->
+					</div>
+					<!-- Add Arrows -->
+					<div class="swiper-button-box">
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
+				</div>
+			</div>
+			<!-- //end #main-center -->
+			<div id="main-info">
+				<div class="cont-tit bar">
+					<h3>내게 맞는 <br class="mo-show">보건의료복지 자원 찾기</h3>
+					<p>맞춤형 자원을 검색해 드립니다.</p>
+				</div>
+                <form name="fsearch" id="fsearch" method="GET" action="/info/page04.html">
+				<div class="inner">
+					<div class="info-search">
+						<div class="row">
+                            <div class="left">
+                                <div class="search_tit">
+                                    <h3><strong>1</strong> 연령 선택</h3>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="search_box">
+									<p>연령 선택</p>
+                                    <label><input type="radio" name="mw_age" value='공통' class='wr_1' <?
+                                            if($_GET['mw_age']=="공통" ){ echo "checked" ;}?>>공통</label>
+                                    <label><input type="radio" name="mw_age" value='소아' class='wr_1' <?
+                                            if($_GET['mw_age']=="소아" ){ echo "checked" ;}?>>소아</label>
+                                    <label><input type="radio" name="mw_age" value='성인' class='wr_1' <?
+                                            if($_GET['mw_age']=="성인" ){ echo "checked" ;}?>>성인</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="left">
+                                <div class="search_tit">
+                                    <h3><strong>2</strong> 자원 선택(중복) 선택</h3>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="search_box n2">
+									<p>자원(중복) 선택</p>
+                                    <label><input type="checkbox" id="re_checkall" name="mw_resource[]" value='전체' class='wr_2' <?
+                                            if($_GET['mw_resource']=="전체" ){ echo "checked" ;}?>>전체</label>
+                                    <label><input type="checkbox" name="mw_resource[]" value='국가건강검진' class='wr_2' <?
+                                            if($_GET['mw_resource']=="국가건강검진" ){ echo "checked" ;}?>>국가건강검진</label>
+                                    <label><input type="checkbox" name="mw_resource[]" value='장애인의료서비스' class='wr_2' <?
+                                            if($_GET['mw_resource']=="장애인의료서비스" ){ echo "checked" ;}?>>장애인의료서비스</label>
+                                    <label><input type="checkbox" name="mw_resource[]" value='재활서비스' class='wr_2' <?
+                                            if($_GET['mw_resource']=="재활서비스" ){ echo "checked" ;}?>>재활서비스</label>
+                                    <label><input type="checkbox" name="mw_resource[]" value='방문건강관리' class='wr_2' <?
+                                            if($_GET['mw_resource']=="방문건강관리" ){ echo "checked" ;}?>>방문건강관리</label>
+                                    <label><input type="checkbox" name="mw_resource[]" value='임신출산양육 지원' class='wr_2' <?
+                                            if($_GET['mw_resource']=="임신출산양육 지원" ){ echo "checked" ;}?>>임신출산양육 지원</label>
+                                    <label><input type="checkbox" name="mw_resource[]" value='재활운동 및 체육' class='wr_2' <?
+                                            if($_GET['mw_resource']=="재활운동 및 체육" ){ echo "checked" ;}?>>재활운동 및
+                                        체육</label>
+                                    <label><input type="checkbox" name="mw_resource[]" value='의료접근성 향상 지원' class='wr_2' <?
+                                            if($_GET['mw_resource']=="의료접근성 향상 지원" ){ echo "checked" ;}?>>의료접근성 향상 지원</label>
+                                    <label><input type="checkbox" name="mw_resource[]" value='복지서비스' class='wr_2' <?
+                                            if($_GET['mw_resource']=="복지서비스" ){ echo "checked" ;}?>>복지서비스</label>
+									<div class="dep2">
+									</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="left">
+                                <div class="search_tit">
+                                    <h3><strong>3</strong> 이용가능지역(중복) 선택</h3>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="search_box">
+									<p>이용가능지역(중복) 선택</p>
+                                    <label><input type="checkbox" id="checkall" name="mw_area[]" value='전지역' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('전지역', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>전지역</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='강북구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('강북구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>강북구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='도봉구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('도봉구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>도봉구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='노원구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('노원구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>노원구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='성북구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('성북구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>성북구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='중랑구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('중랑구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>중랑구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='광진구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('광진구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>광진구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='성동구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('성동구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>성동구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='용산구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('용산구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>용산구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='종로구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('종로구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>종로구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='중구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('중구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>중구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='마포구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('마포구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>마포구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='서대문구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('서대문구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>서대문구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='은평구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('은평구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>은평구</label>
+                                    <label><input type="checkbox" name="mw_area[]" value='동대문구' class='mw_area' <?
+                                            if($_GET['mw_area'])if(in_array('동대문구', $_GET["mw_area"])=="true" ){
+                                            echo "checked" ;}?>>동대문구</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="left">
+                                <div class="search_tit">
+                                    <h3><strong>4</strong> 장애유형(중복) 선택</h3>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="search_box">
+									<p>장애유형(중복) 선택</p>
+                                    <label><input type="checkbox" id="checkdisorder" name="mw_disorderall[]" value='모든 장애 유형' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('모든 장애 유형', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?> >모든 유형</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='지체' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('뇌병변', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>지체</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='뇌병변' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('시각', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>뇌병변</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='시각' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('시각', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>시각</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='청각' class='wr_4'
+                                    <?if($_GET['mw_disorderall'])if(in_array('청각', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>청각</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='언어' class='wr_4'
+                                    <?if($_GET['mw_disorderall'])if(in_array('언어', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>언어</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='안면' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('안면', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>안면</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='신장' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('신장', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>신장</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='심장' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('심장', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>심장</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='간' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('간', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>간</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='호흡기' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('호흡기', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>호흡기</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='장루요루' class='wr_4'
+                                    <?if($_GET['mw_disorderall'])if(in_array('장루요루', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>장루요루</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='뇌전증' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('뇌전증', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>뇌전증</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='지적' class='wr_4'
+                                    <?if($_GET['mw_disorderall'])if(in_array('지적', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>지적</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='자폐' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('자폐', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>자폐</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='정신' class='wr_4'  
+                                    <?if($_GET['mw_disorderall'])if(in_array('정신', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>
+                                       정신</label>
+                                    <label><input type="checkbox" name="mw_disorderall[]" value='기타' class='wr_4' 
+                                    <?if($_GET['mw_disorderall'])if(in_array('기타', $_GET["mw_disorderall"])=="true" ){echo "checked" ;}?>>기타</label>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+					<div class="info-search-btn">
+						<button type="submit" id="id_submit_btn"><img src="/resource/images/search-gray.png">&nbsp;&nbsp;자원 검색</button>
+					</div>
+				</div>
+            	</form>
+			</div>
+			<div id="main-prod">
+				<div class="cont-tit">
+					<!-- <p>서울특별시북부지역장애인보건의료센터</p> -->
+					<h3>사업안내</h3>
+				</div>
+				<div class="inner">
+					<!-- slide -->
+					<div id="main-prod-list">
+						<ul>
+							<li>
+								<a href="/prod/page01-1.html" title="자세히보기">
+									<div class="dec">
+										<div class="img">
+											<img src='/resource/images/main-prodt-slide03-on.png'>
+										</div>
+										<span class="txt">
+											<b>
+												장애인<br>
+												건강보건관리사업
+											</b>
+										</span>
+									</div>
+								</a>
+								<div class="more">
+									<img src="/resource/images/prodt-more.png" alt="">
+								</div>
+							</li>
+							<li>
+								<a href="/prod/page02-1.html" title="자세히보기">
+									<div class="dec">
+										<div class="img">
+											<!-- <img class="on" src='/resource/images/main-prodt-slide01-on.png'>
+											<img class="off" src='/resource/images/main-prodt-slide01-off.png'> -->
+											<img src='/resource/images/main-prodt-slide01-on.png'>
+										</div>
+										<span class="txt">
+											<b>
+												여성장애인<br>
+												모성보건사업
+											</b>
+											<!-- <p>
+												임신여성장애인의 건강요구도를
+												파악하고 임신·출산·육아와 관련된
+												보건·의료·복지서비스를 연계해줍니다.
+											</p> -->
+										</span>
+									</div>
+								</a>
+								<div class="more">
+									<img src="/resource/images/prodt-more.png" alt="">
+								</div>
+							</li>
+							<li>
+								<a href="/prod/page03.html" title="자세히보기">
+									<div class="dec">
+										<div class="img">
+											<img src='/resource/images/main-prodt-slide02-on.png'>
+										</div>
+										<span class="txt">
+											<b>
+												보건의료인력 및<br>
+												장애인·가족 교육
+											</b>
+										</span>
+									</div>
+								</a>
+								<div class="more">
+									<img src="/resource/images/prodt-more.png" alt="">
+								</div>
+							</li>
+							<li>
+								<a href="/prod/page04-1.html" title="자세히보기">
+									<div class="dec">
+										<div class="img">
+											<img src='/resource/images/main-prodt-slide04-on.png'>
+										</div>
+										<span class="txt">
+											<b>
+												건강검진/진료/재활 등<br>
+												의료서비스 제공
+											</b>
+										</span>
+									</div>
+								</a>
+								<div class="more">
+									<img src="/resource/images/prodt-more.png" alt="">
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- //end #main-prod-list -->
+
+					<!-- Add Pagination -->
+					<!-- <div class="swiper-pagination"></div> -->
+					<!-- Add Arrows -->
+					<!-- <div class="swiper-button-box">
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div> -->
+				</div>
+				<!-- //end .inner -->
+			</div>
+			<!-- //end #main-prod -->
+
+			<div id="main-health">
+				<div class="inner">
+					<div class="left">
+						<div class="cont-tit left">
+							<h3>
+								건강복지 소식
+								<a href="/notice/notice.php?jb_code=30" title="더보기">더보기</a>
+							</h3>
+						</div>
+						<ul>
+							<?=$Main_Notice3?>
+						</ul>
+					</div>
+					<!-- /end .left -->
+					<div class="right">
+						<div class="box-1">
+							<p>
+								<small>서울북부지역장애인보건의료센터의</small>
+								업무협력기관
+							</p>
+							<a href="/center/page04-1.html">자세히보기</a>
+						</div>
+						<div class="box-2">
+							<p>
+								<small>한눈에 보는</small>
+								서울특별시북부<br>
+								장애인현황
+							</p>
+							<a href="/info/page02.php">자세히보기</a>
+						</div>
+					</div>
+					<!-- /end .right -->
+				</div>
+			</div>
+			<!-- //end #main-health -->
+
+		</section>
+		<!-- //end #container -->
+        <script>     
+
+        $(function () {
+            $('#id_submit_btn').click(function () {
+                if ($("input:radio[name=mw_age]").is(":checked") == false) {
+                    alert('연령을 선택하세요');
+                    return false;
+                }
+
+                
+                if ($("input:checkbox[name='mw_resource[]']").is(":checked") == false) {
+                    alert('자원을 선택하세요');
+                    return false;
+                }
+
+
+                if ($("input:checkbox[name='mw_area[]']").is(":checked") == false) {
+                    alert('이용가능지역을 선택하세요');
+                    return false;
+                }
+
+                if ($("input:checkbox[name='mw_disorderall[]']").is(":checked") == false) {
+                    alert('장애유형을 선택하세요');
+                    return false;
+                }
+                $('#fsearch').submit();
+                return false;
+            });
+
+            $("#re_checkall").click(function () {                
+                if ($("#re_checkall").prop("checked")) {
+                    $("input[name='mw_resource[]']").prop("checked", true);
+                } else {
+                    $("input[name='mw_resource[]']").prop("checked", false);
+                }
+            })
+            $("#checkall").click(function () {                
+                if ($("#checkall").prop("checked")) {
+                    $("input[name='mw_area[]']").prop("checked", true);
+                } else {
+                    $("input[name='mw_area[]']").prop("checked", false);
+                }
+            })
+
+            $("#checkdisorder").click(function () {                
+                if ($("#checkdisorder").prop("checked")) {
+                    $("input[name='mw_disorderall[]']").prop("checked", true);
+                } else {
+                    $("input[name='mw_disorderall[]']").prop("checked", false);
+                }
+            })
+
+            $("input[name='mw_resource[]']").click(function () {
+
+            if ($(this).is(":checked") == false) {                
+                var val = $(this).val();
+                if (val == "국가건강검진") {
+                    depno = "1";
+                } else if (val == "장애인의료서비스") {
+                    depno = "2";
+                } else if (val == "재활서비스") {
+                    depno = "3";
+                } else if (val == "방문건강관리") {
+                    depno = "4";
+                } else if (val == "임신출산양육 지원") {
+                    depno = "5";
+                } else if (val == "재활운동 및 체육") {
+                    depno = "6";
+                } else if (val == "의료접근성 향상 지원") {
+                    depno = "7";
+                } else if (val == "복지서비스") {
+                    depno = "8";
+                }
+                $("#dep" + depno).remove();
+            }
+
+            if ($(this).is(":checked") == true) {
+                var val = $(this).val();
+
+                if (val != '전체') {
+                    $(".dep2").show();
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/info/page04-1.html",
+                    data: {
+                        mw_resource: val
+                    },
+                    dataType: "text",
+                    success: function (data) {
+                        $('.dep2').append(data);
+                    },
+                    error: function (xhr, status, error) {
+                        alert(error);
+                    }
+                });
+            } else if (!$("input[name='mw_resource[]']").is(":checked")) {
+                $(".dep2").hide().empty();
+            }
+
+
+            });
+
+            $('.btn-close').click(function () {
+                $('.div-video').hide();
+            });
+
+            $('.test-utube').click(function () {
+                $('.div-video').css('display', 'flex');
+            });
+            
+			
+            var resource_array = <?php echo json_encode($_GET["mw_resource"])?>; 
+            var name_array = <?php echo json_encode($_GET["mw_name"])?>; 
+            for (var i = 0; i < resource_array.length; i++) { 
+                $(".dep2").show(); 
+                //console.log(resource_array[i]);
+                $.ajax({
+                    type: "POST",
+                    url: "page04-1.html",
+                    data: { 
+                        mw_resource : resource_array[i]	,
+                        mw_name : name_array
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $('.dep2'). append(data);
+                    },
+                    error: function(xhr, status, error) { alert(error); }
+                    });
+            }
+
+            
+        });
+        </script>
+
+
+		<?php  include_once $GP -> INC_WWW . "/footList.php"; ?>
+		<?php  include_once $GP -> INC_WWW . "/footer.php"; ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+</html>

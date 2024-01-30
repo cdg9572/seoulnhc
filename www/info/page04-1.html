@@ -1,0 +1,44 @@
+<?php
+	include_once  '../_init.php';
+	include_once($GP->CLS."class.list.php");
+	include_once($GP -> CLS."/class.multi.php");
+
+	$C_ListClass 	= new ListClass;
+	$C_multi 		= new multi;	
+
+	$args = array();
+	$args['mw_resource'] = $_POST["mw_resource"];    
+   
+    $rst = $C_multi->MedicalWelfare_name_List(array_merge($_GET,$_POST,$args));
+
+    if($_POST["mw_resource"] == "국가건강검진"){$dep = "dep1";}
+    else if($_POST["mw_resource"] == "장애인의료서비스"){$dep = "dep2";}
+    else if($_POST["mw_resource"] == "재활서비스"){$dep = "dep3";}
+    else if($_POST["mw_resource"] == "방문건강관리"){$dep = "dep4";}
+    else if($_POST["mw_resource"] == "임신출산양육 지원"){$dep = "dep5";}
+    else if($_POST["mw_resource"] == "재활운동 및 체육"){$dep = "dep6";}
+    else if($_POST["mw_resource"] == "의료접근성 향상 지원"){$dep = "dep7";}
+    else if($_POST["mw_resource"] == "복지서비스"){$dep = "dep8";}
+
+    
+    if($_POST["mw_resource"] != "전체"){
+    
+?>
+<div id="<?=$dep?>">	
+<? if($_POST["mw_resource"] != "재활운동 및 체육"){?><p>세부 선택(<?=$_POST["mw_resource"]?>)</p><?}?>	
+<?
+	if($rst) {
+		for	($i=0; $i<count($rst); $i++) {			
+            $mw_name = $rst[$i]['mw_name'];   
+            $mw_resource = $rst[$i]['mw_resource'];  
+                        
+            if($mw_resource != "재활운동 및 체육" ) {
+?>			
+            <label><input type="checkbox" name="mw_name[]" value='<?=$mw_name?>' class='wr_2' <?if($_POST['mw_name'])if(in_array($mw_name, $_POST["mw_name"])=="true" ){ echo "checked" ;}?>><?=$mw_name?></label>
+<?
+            }
+		}
+    }
+}
+?>
+</div>

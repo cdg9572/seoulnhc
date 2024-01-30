@@ -1,0 +1,51 @@
+<?php
+	include_once "../inc/head.php";
+?>
+<style>
+	.map,
+	.root_daum_roughmap.root_daum_roughmap_landing {
+		width: 100% !important;
+	}
+</style>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php"?>
+		<section id="container" class="sub">
+			<div id="sub-bnnr">
+				<h2 class="text">센터안내</h2>
+				<img data-index="1" data-index2="6" src="/resource/images/sub-bnnr01.png" alt="">
+			</div>
+			<!-- //end .sub-bnnr -->
+
+			<?php include_once "../inc/location.php"?>
+
+			<div class="cont-tit">
+				<h3>조직도</h3>
+			</div>
+			<br>
+			<div class="s-inner" style="padding-bottom: 100px;">
+				<div class="tabMenu">
+					<p class="mo-show"><a href="#none">조직도</a></p>
+					<ul>
+						<li><a href="page08.html">병원소개</a></li>
+						<li class="active"><a href="page07.html">조직도</a></li>
+					</ul>
+				</div>
+				<!-- <h4 class="cont-sub-tit">조직도</h4> -->
+				<div class="cont-box no-after no-before">
+					<div class="cont">
+						<img style="max-width:100%;margin-top: 60px;" src="/resource/images/areamap.png" alt="">
+					</div>
+				</div>
+			</div>
+			<!-- //end .s-inner -->
+		</section>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/footer.php"?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

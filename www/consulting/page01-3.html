@@ -1,0 +1,80 @@
+<?php
+	include_once "../inc/head.php";
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php"?>
+		<section id="container" class="sub">
+			<div id="sub-bnnr">
+				<h2 class="text">상담</h2>
+				<img data-index="5" data-index2="1" src="/resource/images/sub-bnnr05.png" alt="">
+			</div>
+			<!-- //end .sub-bnnr -->
+
+			<?php include_once "../inc/location.php"?>
+
+			<div class="cont-tit">
+				<h3>전화상담 신청</h3>
+			</div>
+			<div class="s-inner">
+				<div class="tabMenu">
+					<p class="mo-show"><a href="#none"></a></p>
+					<ul>
+						<li><a href="/notice/notice.php?jb_code=70">온라인상담 신청</a></li>
+						<li><a href="page01-2.html">실시간상담 신청</a></li>
+						<li class="active"><a href="page01-3.html">전화상담 신청</a></li>
+					</ul>
+				</div>
+				<!-- //end tab -->
+
+				<h3 class="cont-sub-tit">전화상담</h3>
+				<div class="cont-box">
+					<h4 class="cont-label">전화상담</h4>
+					<div class="cont">
+						<ul class="middot-list">
+							<li>전화상담 가능 시간은 평일 오전 9시 00분부터 오후 5시 00분까지입니다.</li>
+							<li>전화상담을 원하시는 분은 아래의 담당자 전화번호로 연락주세요.</li>
+						</ul>
+						<div class="tableType-01 green">
+							<table>
+								<colgroup>
+									<col style="width:55%">
+									<col style="width:45%">
+								</colgroup>
+								<thead>
+									<tr>
+										<th>상담내용</th>
+										<th>전화번호</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+									<tr>
+										<td>장애인건강관리 상담 (의료기관 연계, 복지자원 연계)</td>
+										<td>
+											<a href="tel:0260203124" class="btn-xs bg-green" style="margin:5px;">
+												<img src="/resource/images/tell.png" alt=""> 02-6020-3124~5
+											</a>
+										</td>
+									</tr>
+									<!-- <tr>
+										<td>여성장애인 임신·출산·양육 관련 상담</td>
+										<td>02-6020-3123</td>
+									</tr> -->
+								</tbody>
+							</table>
+							<!-- <p class="help-text">※ 내원 전 각 진료과에 문의바랍니다.</p> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //end .s-inner -->
+		</section>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/footer.php"?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

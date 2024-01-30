@@ -1,0 +1,106 @@
+<?php
+	include_once '../_init.php';
+	
+	include_once "../inc/head.php";
+
+	include_once($GP->CLS."class.list.php");
+	include_once($GP -> CLS."/class.multi.php");
+
+	$C_ListClass 	= new ListClass;
+	$C_multi 		= new multi;	
+
+	$args = array();	
+	$args['tm_menu'] = "site";	
+	$args['tm_type'] = "A";	
+	$data = "";
+	$data = $C_multi->multi_List(array_merge($_GET,$_POST,$args));
+	$data_list 		= $data['data'];
+	$data_list_cnt 	= count($data_list);
+
+?>
+<style>
+	table tbody tr td {
+		word-break: normal !important;
+	}
+
+	@media screen and (max-width:1023px) {
+		table thead tr th {
+			font-size: 2.2rem !important;
+		}
+
+		table tbody tr td {
+			font-size: 2rem !important;
+		}
+	}
+</style>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php"?>
+		<section id="container" class="sub">
+			<div id="sub-bnnr">
+				<h2 class="text">정보</h2>
+				<img data-index="3" data-index2="3" src="/resource/images/sub-bnnr03.png" alt="">
+			</div>
+			<!-- //end .sub-bnnr -->
+
+			<?php include_once "../inc/location.php"?>
+
+			<div class="cont-tit">
+				<h3>관련 사이트</h3>
+			</div>
+			<div class="s-inner">
+				<div class="tabMenu">
+					<p class="mo-show"><a href="#none"></a></p>
+					<ul>
+						<li class="active"><a href="page03-1.html">보건</a></li>
+                        <li><a href="page03-4.html">의료</a></li>
+						<li><a href="page03-2.html">복지</a></li>
+						<li><a href="page03-3.html">공공</a></li>
+					</ul>
+				</div>
+				<!-- //end tab -->
+				<h3 class="cont-sub-tit">관련 사이트</h3>
+				<div class="cont-box">
+					<h4 class="cont-label">보건</h4>
+					<div class="cont">
+						<ul id="collaboCorp">
+						<?php
+							$dummy = 1;
+							for ($i = 0 ; $i < $data_list_cnt ; $i++) {
+								$tm_idx        = $data_list[$i]['tm_idx'];                                        
+								$tm_content1      = $data_list[$i]['tm_content1'];
+								$tm_content2      = $data_list[$i]['tm_content2'];
+								$tm_content3      = $data_list[$i]['tm_content3'];
+								$tm_img        = $data_list[$i]['tm_img'];
+								$tm_m_img      = $data_list[$i]['tm_m_img'];    	
+								
+								$img_src = "";
+								if($tm_img != '') {
+									$img_src = "<img src='" . $GP -> UP_multi_URL . $tm_img . "' alt='' />";
+								}else{
+									$img_src = "<img src='/images/no_image.jpg' alt='' />";
+								}							
+								
+						?>
+							<li>
+								<a href="<?=$tm_content3?>" target="_blank">
+									<span class="logo"><?=$img_src?></span>
+									<span class="name"><?=$tm_content2?></span>
+								</a>
+							</li>
+						<? } ?>	
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- //end .s-inner -->
+		</section>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/footer.php"?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<?php
+	include_once '../_init.php';
+	
+	include_once "../inc/head.php";
+
+	include_once($GP->CLS."class.list.php");
+	include_once($GP -> CLS."/class.multi.php");
+
+	$C_ListClass 	= new ListClass;
+	$C_multi 		= new multi;
+	$C_Button 		= new Button;
+
+	$args = array();
+	$args['tm_menu'] = "mou";
+	$data = "";
+	$data = $C_multi->multi_List(array_merge($_GET,$_POST,$args));
+	$data_list 		= $data['data'];
+	$data_list_cnt 	= count($data_list);
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php"?>
+		<section id="container" class="sub">
+			<div id="sub-bnnr">
+				<h2 class="text">센터안내</h2>
+				<img data-index="1" data-index2="4" src="/resource/images/sub-bnnr01.png" alt="">
+			</div>
+			<!-- //end .sub-bnnr -->
+
+			<?php include_once "../inc/location.php"?>
+
+			<div class="cont-tit">
+				<h3>업무협력기관</h3>
+			</div>
+			<div class="s-inner">
+				<div class="tabMenu">
+					<p class="mo-show"><a href="#none"></a></p>
+					<ul>
+						<li class="active"><a href="page04-1.html">MOU기관</a></li>
+						<li><a href="page04-2.html">협력기관</a></li>
+					</ul>
+				</div>
+				<!-- //end tab -->
+
+				<h3 class="cont-sub-tit">업무협력기관</h3>
+				<div class="cont-box">
+					<div class="cont">
+						<p style="margin-bottom: 15px;"><b>서울특별시북부지역장애인보건의료센터에서는 장애인의 건강권을 위하여 보건의료복지 네트워크 구축을 진행합니다.</b></p>
+						<ul class="middot-list">
+							<li>장애인 통합건강관리 전달체계 구축을 위해 기존 지역사회 내, 장애인의 건강관리 관련 자원을 분석</li>
+							<li>기존 보건의료, 복지 분야 자원 분석 및 장애인 건강관리에 필요한 자원에 대한 욕구 파악</li>
+							<li>서울특별시 북부지역 중심의 장애인 관련 보건의료복지기관 협력체계 구축</li>
+						</ul>
+					</div>
+				</div>
+				<div class="cont-box">
+					<h4 class="cont-label">MOU 기관</h4>
+					<div class="cont">
+						<ul id="collaboCorp">
+						<?php
+							$dummy = 1;
+							for ($i = 0 ; $i < $data_list_cnt ; $i++) {
+								$tm_idx        = $data_list[$i]['tm_idx'];
+								$tm_content1      = $data_list[$i]['tm_content1'];
+								$tm_content2      = $data_list[$i]['tm_content2'];
+								$tm_content3      = $data_list[$i]['tm_content3'];
+								$tm_img        = $data_list[$i]['tm_img'];
+								$tm_m_img      = $data_list[$i]['tm_m_img'];
+
+								$img_src = "";
+								if($tm_img != '') {
+									$img_src = "<img src='" . $GP -> UP_multi_URL . $tm_img . "' alt='' />";
+								}else{
+									$img_src = "<img src='/images/no_image.jpg' alt='' />";
+								}
+
+						?>
+							<li>
+								<a href="<?=$tm_content2?>" target="_blank">
+									<span class="logo"><?=$img_src?></span>
+									<span class="name"><?=$tm_content1?></span>
+								</a>
+							</li>
+						<? } ?>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- //end .s-inner -->
+		</section>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/footer.php"?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

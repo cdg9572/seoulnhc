@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteBase /
+RewriteCond $1 !^(www)/
+RewriteCond %{HTTP_HOST} ^(www.)?seoulnhc.com [NC]
+RewriteRule ^(.*)$ /www/$1 [L]
+
+php_value post_max_size 100M
+php_value upload_max_filesize 100M

@@ -1,0 +1,194 @@
+<?php
+	include_once '../_init.php';
+	
+	include_once "../inc/head.php";
+
+	include_once($GP->CLS."class.list.php");
+	include_once($GP -> CLS."/class.multi.php");
+
+	$C_ListClass 	= new ListClass;
+	$C_multi 		= new multi;	
+
+	$args = array();	
+    $args['tm_menu'] = "health";	
+    //$args['q_order'] = "tm_content1 asc" ;
+	$data = "";
+	$data = $C_multi->multi_List(array_merge($_GET,$_POST,$args));
+	$data_list 		= $data['data'];
+	$data_list_cnt 	= count($data_list);
+
+?>
+<style>
+	.tableType-01.green th,
+	.tableType-01.green td {
+		padding:15px;
+	}
+
+	@media screen and (max-width:1200px) {
+		col:first-of-type {
+			width: 120px !important;
+		}
+	}
+	@media screen and (max-width:1023px) {
+		col:first-of-type {
+			width: 200px !important;
+		}
+	}
+</style>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php"?>
+		<section id="container" class="sub">
+			<div id="sub-bnnr">
+				<h2 class="text">정보</h2>
+				<img data-index="3" data-index2="1" src="/resource/images/sub-bnnr03.png" alt="">
+			</div>
+			<!-- //end .sub-bnnr -->
+
+			<?php include_once "../inc/location.php"?>
+
+			<div class="cont-tit">
+				<h3>나의 건강체크</h3>
+			</div>
+			<div class="s-inner">
+				<div id="myHealth">
+					<div class="img">
+						<img src="/resource/images/myHelth.png" alt="">
+					</div>
+					<div class="right">
+						<h4>각종 질병 자가진단</h4>
+						<p>
+							국민건강보험공단 건강IN 홈페이지에서 <br class="mo-show">제공하는 서비스입니다.<br>
+							각 항목을 클릭하시면 해당정보로 이동합니다.
+						</p>
+						<div class="tableType-01 green no-border">
+							<table>
+								<colgroup>
+									<col style="width: 218px;">
+									<col>
+									<col style="width: 60px;">
+								</colgroup>
+								<tbody>
+                                <?php
+                                    $dummy = 1;
+                                    for ($i = 0 ; $i < $data_list_cnt ; $i++) {
+                                        $tm_idx        = $data_list[$i]['tm_idx'];                                        
+                                        $tm_content1      = $data_list[$i]['tm_content1'];
+                                        $tm_content2      = $data_list[$i]['tm_content2'];
+                                        $tm_content3      = $data_list[$i]['tm_content3'];
+                                        $tm_img        = $data_list[$i]['tm_img'];
+                                        $tm_m_img      = $data_list[$i]['tm_m_img'];  
+
+                                        $args_c['tm_menu'] = "health";	
+                                        $args_c['tm_content1'] = $data_list[$i]['tm_content1'];	
+                                        $data_c = "";
+                                        $data_c = $C_multi->Multi_count_Info(array_merge($_GET,$_POST,$args_c));
+                                        
+                                        // if($tm_content1 == $data_list[$i]['tm_content1']) $tm_row = "<th rowspan='" . $tm_count . "'>". $tm_content1   . "</th>" ; 
+                                        // else $tm_row = "";
+
+                                        // echo "echo:" . $tm_content1 . "<br>" ; 
+                                        // echo "echo2:" . $data_list[$i]['tm_content1'] . "<br>" ;
+
+                                        $tm_temp = $data_list[$i]['tm_content1'];
+                                        
+                                        if($aa == ""){
+                                            $tm_temp = "";
+                                        }
+
+                                        // if($i == 0 ){
+                                        //     $tm_temp = $data_list[0]['tm_content1'];
+                                        // }
+                                        // // elseif($tm_temp == "" and $tm_temp != $data_list[$i]['tm_content1']){
+                                        // //     $tm_temp =  $data_list[$i]['tm_content1'];
+                                        // // }  
+                                                                                  
+                                        // elseif($tm_temp == $data_list[$i]['tm_content1']){
+                                        //     $tm_temp = "";
+                                        // }                                                                               
+                                        
+                                       
+                                        if($tm_temp == ""){ // 비었으면
+                                            $tm_row = "";                                          
+                                        }
+                                        elseif($tm_temp == $data_list[$i]['tm_content1']){
+                                            $tm_row = "<th rowspan='" . $data_c['tm_count'] . "'>". $data_list[$i]['tm_content1']   . "</th>" ; 
+                                        }
+                                        // elseif($tm_temp == $data_list[$i]['tm_content1']){
+                                        //     $tm_temp = $data_list[$i]['tm_content1'];                                   
+                                        // }
+
+                                        // echo "data_list".$i.":" .$data_list[$i]['tm_content1'] . "<br>" ;
+                                        // echo "tm_temp".$i.":" . $tm_temp . "<br>" ;
+                                        
+
+                                        
+                                ?>
+                                <tr>
+                                    <!--<?=$tm_row?>-->
+                                    <th><?=$tm_content1?></th>
+                                    <td class="title">· <?=$tm_content2?></td>
+                                    <td><a class="link" href="<?=$tm_content3?>" target="_blank"><img src="/resource/images/w_plus.png" alt=""></a></td>
+                                </tr>
+                                <? } ?>	
+                                    <!--tr>
+										<th rowspan="3">질환평가</th>
+										<td class="title">· 당뇨</td>
+										<td><a class="link" href="https://www.nhis.or.kr/nhis/healthin/retrieveDiseVltDiabet.do" target="_blank"><img src="/resource/images/w_plus.png" alt=""></a></td>
+									</tr>
+									<tr>
+                                       
+										<td class="title">· 고혈압</td>
+										<td><a class="link" href="https://www.nhis.or.kr/nhis/healthin/retrieveDiseVltHprts.do" target="_blank"><img src="/resource/images/w_plus.png" alt=""></a></td>
+									</tr>
+									<tr>
+                                       
+										<td class="title">· 구강</td>
+										<td><a class="link" href="https://www.nhis.or.kr/nhis/healthin/retrieveDiseVltMccvMgmt.do" target="_blank"><img src="/resource/images/w_plus.png" alt=""></a></td>
+									</tr>
+									<tr>
+										<th rowspan="3">여성건강</th>
+										<td class="title">· 산후우울증</td>
+										<td><a class="link" href="https://www.nhis.or.kr/nhis/healthin/retrieveFmlHltDlvAfMely.do" target="_blank"><img src="/resource/images/w_plus.png" alt=""></a></td>
+									</tr>
+									<tr>
+										<td class="title">· 갱년기 여성 & 폐경 테스트</td>
+										<td><a class="link" href="https://www.nhis.or.kr/nhis/healthin/retrieveFmlHltClimMnps.do" target="_blank"><img src="/resource/images/w_plus.png" alt=""></a></td>
+									</tr>
+									<tr>
+										<td class="title">· 요실금 테스트</td>
+										<td><a class="link" href="https://www.nhis.or.kr/nhis/healthin/retrieveFmlHltUinOdr1Test.do" target="_blank"><img src="/resource/images/w_plus.png" alt=""></a></td>
+									</tr>
+									<tr>
+										<th rowspan="2">정신건강</th>
+										<td class="title">· ZUNG 우울증 척도</td>
+										<td><a class="link" href="https://www.nhis.or.kr/nhis/healthin/retrieveMindHltMelyMesr.do" target="_blank"><img src="/resource/images/w_plus.png" alt=""></a></td>
+									</tr>
+									<tr>
+										<td class="title">· 긴장수준</td>
+										<td><a class="link" href="https://www.nhis.or.kr/nhis/healthin/retrieveMindHltStresLevel.do" target="_blank"><img src="/resource/images/w_plus.png" alt=""></a></td>
+									</tr>
+									<tr>
+										<th>영양</th>
+										<td class="title">· 식습관 자가진단</td>
+										<td><a class="link" href="https://www.nhis.or.kr/nhis/healthin/retrieveNutEatptnDiag.do" target="_blank"><img src="/resource/images/w_plus.png" alt=""></a></td>
+									</tr-->
+								</tbody>
+							</table>
+						</div>
+						<p>이 외에 각종 건강관련 정보가 필요할 시 아래의 사이트를 방문해주세요.</p>
+						<a href="https://www.nhis.or.kr/" target="_blank" class="btn bg-deepblue">국민건강보험공단 건강IN 홈페이지 바로가기</a>
+					</div>
+				</div>
+			</div>
+			<!-- //end .s-inner -->
+		</section>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/footer.php"?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

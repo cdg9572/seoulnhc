@@ -1,0 +1,149 @@
+<?php
+	include_once '../_init.php';
+	
+	include_once "../inc/head.php";
+
+	include_once($GP->CLS."class.list.php");
+	include_once($GP -> CLS."/class.multi.php");
+
+	$C_ListClass 	= new ListClass;
+	$C_multi 		= new multi;
+
+	$args = array();
+    $args['tm_menu'] = "center";
+	$data = "";
+	$data = $C_multi->multi_List(array_merge($_GET,$_POST,$args));
+	$data_list 		= $data['data'];
+	$data_list_cnt 	= count($data_list);
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php"?>
+		<section id="container" class="sub">
+			<div id="sub-bnnr">
+				<h2 class="text">센터안내</h2>
+				<img data-index="1" data-index2="3" src="/resource/images/sub-bnnr01.png" alt="">
+			</div>
+			<!-- //end .sub-bnnr -->
+
+			<?php include_once "../inc/location.php"?>
+
+			<div class="cont-tit">
+				<h3>전국센터 현황</h3>
+			</div>
+			<div class="s-inner">
+				<h3 class="cont-sub-tit">전국센터 현황</h3>
+				<div class="cont-box">
+					<div class="cont">
+						<div class="sCont">
+							<div class="koreaMap">
+								<p class="help-text">
+									<img src="/resource/images/center-point.png" alt="">&nbsp;&nbsp;지도 위 아아콘을 클릭하시면 해당 지역의 센터정보를 확인하실 수 있습니다.
+								</p>
+								<img src="/resource/images/korea-map.png" alt="전국센터형황 지도입니다.">
+								<a href="#none" class="mapPoint01 pointBtn" data-num="1" title="경상남도 지역장애인보건의료센터">
+									<span class="numMap">01</span> <span class="numArea">경상남도</span>
+								</a>
+								<a href="#none" class="mapPoint02 pointBtn" data-num="2" title="중앙장애인보건의료센터 / 서울북부 지역장애인보건의료센터 / 서울남부 지역장애인보건의료센터">
+									<span class="numMap">02</span> <span class="numArea">서울특별시</span>
+								</a>
+								<a href="#none" class="mapPoint03 pointBtn" data-num="3" title="강원도 지역장애인보건의료센터">
+									<span class="numMap">03</span> <span class="numArea">강원도</span>
+								</a>
+								<a href="#none" class="mapPoint04 pointBtn" data-num="4" title="대전광역시 지역장애인보건의료센터">
+									<span class="numMap">04</span> <span class="numArea">대전광역시</span>
+								</a>
+								<a href="#none" class="mapPoint05 pointBtn" data-num="5" title="전라북도 지역장애인보건의료센터">
+									<span class="numMap">05</span> <span class="numArea">전라북도</span>
+								</a>
+								<a href="#none" class="mapPoint06 pointBtn" data-num="6" title="경기도남부지역장애인보건의료센터 / 경기도북부지역장애인보건의료센터">
+									<span class="numMap">06</span> <span class="numArea">경기도</span>
+								</a>
+								<a href="#none" class="mapPoint07 pointBtn" data-num="7" title="인천광역시 지역장애인보건의료센터">
+									<span class="numMap">07</span> <span class="numArea">인천광역시</span>
+								</a>
+								<a href="#none" class="mapPoint08 pointBtn" data-num="8" title="부산광역시 지역장애인보건의료센터">
+									<span class="numMap">08</span> <span class="numArea">부산광역시</span>
+								</a>
+								<a href="#none" class="mapPoint09 pointBtn" data-num="9" title="제주 지역장애인보건의료센터">
+									<span class="numMap">09</span> <span class="numArea">제주특별자치도</span>
+								</a>
+								<a href="#none" class="mapPoint10 pointBtn" data-num="10" title="광주광역시 지역장애인보건의료센터">
+									<span class="numMap">10</span> <span class="numArea">광주광역시</span>
+								</a>
+								<a href="#none" class="mapPoint11 pointBtn" data-num="11" title="대구광역시 지역장애인보건의료센터">
+									<span class="numMap">11</span> <span class="numArea">대구광역시</span>
+								</a>
+                                <a href="#none" class="mapPoint17 pointBtn" data-num="17" title="경상북도 지역장애인보건의료센터">
+									<span class="numMap">17</span> <span class="numArea">경상북도</span>
+								</a>
+								<!-- <a href="#none" class="mapPoint12 pointBtn" data-num="12" title="울산광역시 지역장애인보건의료센터">
+									<span class="numMap">12</span> <span class="numArea">울산광역시</span>
+								</a>
+								<a href="#none" class="mapPoint13 pointBtn" data-num="13" title="세종특별자치시 지역장애인보건의료센터">
+									<span class="numMap">13</span> <span class="numArea">세종특별자치시</span>
+								</a>-->
+								<a href="#none" class="mapPoint14 pointBtn" data-num="14" title="충청북도 지역장애인보건의료센터">
+									<span class="numMap">14</span> <span class="numArea">충청북도</span>
+								</a>
+								<a href="#none" class="mapPoint15 pointBtn" data-num="15" title="충청남도 지역장애인보건의료센터">
+									<span class="numMap">15</span> <span class="numArea">충청남도</span>
+								</a>
+								<a href="#none" class="mapPoint16 pointBtn" data-num="16" title="전라남도 지역장애인보건의료센터">
+									<span class="numMap">16</span> <span class="numArea">전라남도</span>
+								</a>
+								
+							</div>
+							<div class="areaList">
+							<?php
+								$dummy = 1;
+								for ($i = 0 ; $i < $data_list_cnt ; $i++) {
+									$tm_idx        = $data_list[$i]['tm_idx'];
+									$tm_content1      = $data_list[$i]['tm_content1'];
+									$tm_content2      = $data_list[$i]['tm_content2'];
+									$tm_content3      = $data_list[$i]['tm_content3'];
+									$tm_content4      = $data_list[$i]['tm_content4'];
+									$tm_content5      = $data_list[$i]['tm_content5'];
+									$tm_content6      = $data_list[$i]['tm_content6'];
+							?>
+								<div class="centerBox center<?=$tm_content6?>">
+									<h6>
+										<?=$tm_content1?>
+										<small><?=$tm_content2?></small>
+									</h6>
+									<p class="addr"><?=$tm_content3?></p>
+									<p class="tel"><?=$tm_content4?></p>
+                                    <?php if($tm_content5) {?>
+									<div class="link">
+										<a class="btn bg-deepblue" href="<?=$tm_content5?>" target="_blank"	alt="새창">바로가기</a>
+									</div>
+                                    <?}?>
+								</div>
+							<? } ?>
+							</div>
+							<script>
+							// <![CDATA[
+								$(function () {
+									$(".pointBtn").click(function () {
+										var $btnData = $(this).data('num');
+										$(".center" + $btnData).show().siblings().not(".center" + $btnData).hide();
+									});
+								});
+							// ]]>
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //end .s-inner -->
+		</section>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/footer.php"?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

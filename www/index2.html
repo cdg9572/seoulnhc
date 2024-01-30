@@ -1,0 +1,204 @@
+<?php
+	include_once  './_init.php';
+	include_once $GP -> INC_WWW . '/head.php';
+	//include_once $GP -> INC_WWW . '/count_inc.php';
+    include_once $GP -> HOME."main_lib/main_proc.php";   
+
+
+    $Main_Notice = Main_Notice(10, 2);//공지사항 리스트
+	$Main_Notice2 = Main_Notice(20 , 8);//공지사항 썸네일
+	$Main_Notice3 = Main_Notice(30 , 3);//건강복지 소식
+
+	$Main_Slide = Main_Slide();//메인 슬라이드
+?>
+<body>
+	<div id="wrap">
+		<?php include_once $GP -> INC_WWW . '/header.php'; ?>
+		<section id="container">
+			<div id="main-slide" class="swiper-container">
+				<ul class="swiper-wrapper">
+					<?=$Main_Slide?>
+				</ul>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+				<!-- Add Arrows -->
+				<!-- <div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div> -->
+			</div>
+			<!-- //end #main-slide -->
+			<div id="main-center">
+				<div class="cont-tit bar">
+					<h3>센터소식</h3>
+					<p>센터의 다양한 활동과 <br class="mo-show">소식을 공유하여 소통합니다</p>
+				</div>
+				<!-- <div class="noti-list inner">
+					<?=$Main_Notice?>
+				</div> -->
+				<!-- //end .noti-list -->
+				<div class="inner">
+					<!-- slide -->
+					<div id="main-center-list" class="swiper-container">
+						<ul class="swiper-wrapper">
+							<?=$Main_Notice2?>
+						</ul>
+						<!-- <div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div> -->
+					</div>
+					<!-- Add Arrows -->
+					<div class="swiper-button-box">
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
+				</div>
+			</div> 
+			<!-- //end #main-center -->
+
+			<div id="main-prod">
+				<div class="cont-tit">
+					<p>서울특별시북부지역장애인보건의료센터</p>
+					<h3>사업안내</h3>
+				</div>
+				<div class="inner">
+					<!-- slide -->
+					<div id="main-prod-list">
+						<ul>
+							<li>
+								<a href="/prod/page01-1.html" title="자세히보기">
+									<div class="dec">
+										<div class="img">
+											<img src='/resource/images/main-prodt-slide03-on.png'>
+										</div>
+										<span class="txt">
+											<b>
+												장애인<br>
+												건강보건관리사업
+											</b>
+										</span>
+									</div>
+								</a>
+								<div class="more">
+									<img src="/resource/images/prodt-more.png" alt="">
+								</div>
+							</li>
+							<li>
+								<a href="/prod/page02-1.html" title="자세히보기">
+									<div class="dec">
+										<div class="img">
+											<!-- <img class="on" src='/resource/images/main-prodt-slide01-on.png'>
+											<img class="off" src='/resource/images/main-prodt-slide01-off.png'> -->
+											<img src='/resource/images/main-prodt-slide01-on.png'>
+										</div>
+										<span class="txt">
+											<b>
+												여성장애인<br>
+												모성보건사업
+											</b>
+											<!-- <p>
+												임신여성장애인의 건강요구도를
+												파악하고 임신·출산·육아와 관련된
+												보건·의료·복지서비스를 연계해줍니다.
+											</p> -->
+										</span>
+									</div>
+								</a>
+								<div class="more">
+									<img src="/resource/images/prodt-more.png" alt="">
+								</div>
+							</li>
+							<li>
+								<a href="/prod/page03.html" title="자세히보기">
+									<div class="dec">
+										<div class="img">
+											<img src='/resource/images/main-prodt-slide02-on.png'>
+										</div>
+										<span class="txt">
+											<b>
+												보건의료인력 및<br>
+												장애인·가족 교육
+											</b>
+										</span>
+									</div>
+								</a>
+								<div class="more">
+									<img src="/resource/images/prodt-more.png" alt="">
+								</div>
+							</li>
+							<li>
+								<a href="/prod/page04-1.html" title="자세히보기">
+									<div class="dec">
+										<div class="img">
+											<img src='/resource/images/main-prodt-slide04-on.png'>
+										</div>
+										<span class="txt">
+											<b>
+												건강검진/진료/재활 등<br>
+												의료서비스 제공
+											</b>
+										</span>
+									</div>
+								</a>
+								<div class="more">
+									<img src="/resource/images/prodt-more.png" alt="">
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- //end #main-prod-list -->
+
+					<!-- Add Pagination -->
+					<!-- <div class="swiper-pagination"></div> -->
+					<!-- Add Arrows -->
+					<!-- <div class="swiper-button-box">
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div> -->
+				</div>
+				<!-- //end .inner -->
+			</div>
+			<!-- //end #main-prod -->
+
+			<div id="main-health">
+				<div class="inner">
+					<div class="left">
+						<div class="cont-tit left">
+							<h3>
+								건강복지 소식
+								<a href="/notice/notice.php?jb_code=30" title="더보기">더보기</a>
+							</h3>
+						</div>
+						<ul>
+							<?=$Main_Notice3?>
+						</ul>
+					</div>
+					<!-- /end .left -->
+					<div class="right">
+						<div class="box-1">
+							<p>
+								<small>서울북부지역장애인보건의료센터의</small>
+								업무협력기관
+							</p>
+							<a href="/center/page04-1.html">자세히보기</a>
+						</div>
+						<div class="box-2">
+							<p>
+								<small>한눈에 보는</small>
+								서울특별시북부<br>
+								장애인현황
+							</p>
+							<a href="/info/page02.php">자세히보기</a>
+						</div>
+					</div>
+					<!-- /end .right -->
+				</div>
+			</div>
+			<!-- //end #main-health -->
+
+		</section>
+		<!-- //end #container -->
+
+		<?php  include_once $GP -> INC_WWW . "/footList.php"; ?>
+		<?php  include_once $GP -> INC_WWW . "/footer.php"; ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+</html>

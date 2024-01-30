@@ -1,0 +1,129 @@
+<?php
+	include_once '../_init.php';
+	
+	include_once "../inc/head.php";
+
+	include_once($GP->CLS."class.list.php");
+	include_once($GP -> CLS."/class.multi.php");
+
+	$C_ListClass 	= new ListClass;
+	$C_multi 		= new multi;
+
+	$args = array();
+    $args['tm_menu'] = "center";
+	$data = "";
+	$data = $C_multi->multi_List(array_merge($_GET,$_POST,$args));
+	$data_list 		= $data['data'];
+	$data_list_cnt 	= count($data_list);
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php"?>
+		<section id="container" class="sub">
+			<div id="sub-bnnr">
+				<h2 class="text">센터안내</h2>
+				<img data-index="1" data-index2="3" src="/resource/images/sub-bnnr01.png" alt="">
+			</div>
+			<!-- //end .sub-bnnr -->
+
+			<?php include_once "../inc/location.php"?>
+
+			<div class="cont-tit">
+				<h3>전국센터 현황</h3>
+			</div>
+			<div class="s-inner">
+				<h3 class="cont-sub-tit">전국센터 현황</h3>
+				<div class="cont-box">
+					<div class="cont">
+						<div class="sCont">
+							<div class="koreaMap">
+								<!-- 지도를 표시할 div 입니다 -->
+								<div id="map" style="width:100%;height:651px;"></div>
+
+								<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d70fbab453a81d305ec6a87bdb67140"></script>
+								<script>
+									var mapContainer3 = document.getElementById('map'), // 지도를 표시할 div
+									mapOption3 = {
+										center: new kakao.maps.LatLng(37.6056209, 126.907072), // 지도의 중심좌표
+										level: 3 // 지도의 확대 레벨
+									};
+									var map3 = new kakao.maps.Map(mapContainer3, mapOption3); // 지도를 생성합니다
+									// 마커가 표시될 위치입니다
+									var position = [
+										new kakao.maps.LatLng(37.6391706, 127.0106175),
+										new kakao.maps.LatLng(37.6056209, 126.907072),
+										new kakao.maps.LatLng(37.4921385, 126.9242551),
+										new kakao.maps.LatLng(37.3504033, 127.1244617),
+										new kakao.maps.LatLng(37.458619, 126.6340376),
+										new kakao.maps.LatLng(37.9055369, 127.7421956),
+										new kakao.maps.LatLng(36.3167707, 127.4162265),
+										new kakao.maps.LatLng(35.964126, 126.9579048),
+										new kakao.maps.LatLng(35.3261303, 129.0048926),
+										new kakao.maps.LatLng(35.120294, 129.0179994),
+										new kakao.maps.LatLng(33.4670429, 126.5457558)
+									];
+									var bounds = new kakao.maps.LatLngBounds();
+									var i, marker;
+									for (var i = 0; i < position.length; i++) {
+										var marker = new kakao.maps.Marker({
+											map: map3,
+											position: position[i]
+										});
+										bounds.extend(position[i]);
+									}
+									map3.setBounds(bounds)
+								</script>
+							</div>
+							<div class="areaList">
+							<?php
+								$dummy = 1;
+								for ($i = 0 ; $i < $data_list_cnt ; $i++) {
+									$tm_idx        = $data_list[$i]['tm_idx'];
+									$tm_content1      = $data_list[$i]['tm_content1'];
+									$tm_content2      = $data_list[$i]['tm_content2'];
+									$tm_content3      = $data_list[$i]['tm_content3'];
+									$tm_content4      = $data_list[$i]['tm_content4'];
+									$tm_content5      = $data_list[$i]['tm_content5'];
+									$tm_content6      = $data_list[$i]['tm_content6'];
+							?>
+								<div class="centerBox center<?=$tm_content6?>">
+									<h6>
+										<?=$tm_content1?>
+										<small><?=$tm_content2?></small>
+									</h6>
+									<p class="addr"><?=$tm_content3?></p>
+									<p class="tel"><?=$tm_content4?></p>
+                                    <?php if($tm_content5) {?>
+									<div class="link">
+										<a class="btn bg-deepblue" href="<?=$tm_content5?>" target="_blank"	alt="새창">바로가기</a>
+									</div>
+                                    <?}?>
+								</div>
+							<? } ?>
+							</div>
+							<script>
+							// <![CDATA[
+								$(function () {
+									$(".pointBtn").click(function () {
+										var $btnData = $(this).data('num');
+										$(".center" + $btnData).show().siblings().not(".center" + $btnData).hide();
+									});
+								});
+							// ]]>
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //end .s-inner -->
+		</section>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/footer.php"?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<?php
+	include_once "../inc/head.php";
+?>
+<style>
+	.help-text {
+		font-size: 2.2rem;
+		/* font-weight: 500; */
+		line-height: 1.6;
+		letter-spacing: -1.65px;
+	}
+
+	.help-text.text-deepblue {
+		font-weight: bold !important;
+	}
+	.sign {
+		text-align: right;
+		font-size: 2rem;
+	}
+	.img-intro {
+		padding:70px 0 90px;
+	}
+	@media screen and (max-width:1023px){
+		.help-text {
+			font-size: 3.6rem;
+		}
+		.help-text.text-deepblue {
+			letter-spacing: -2.5px;
+		}
+		.sign {
+			font-size: 2.9rem;
+		}
+	}
+</style>
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php"?>
+		<section id="container" class="sub">
+			<div id="sub-bnnr">
+				<h2 class="text">센터안내</h2>
+				<img data-index="1" data-index2="1" src="/resource/images/sub-bnnr01.png" alt="">
+			</div>
+			<!-- //end .sub-bnnr -->
+
+			<?php include_once "../inc/location.php"?>
+
+			<div class="cont-tit">
+				<h3>인사말</h3>
+			</div>
+			<div class="s-inner">
+				<div class="tabMenu">
+					<p class="mo-show"><a href="#none">센터장 인사말</a></p>
+					<ul>
+						<li><a href="page01-1.html">병원장 인사말</a></li>
+						<li class="active"><a href="page01.html">센터장 인사말</a></li>
+					</ul>
+				</div>
+				<div class="boss-tit">
+					<img class="boss-bg" src="/resource/images/boss-bg.png" alt="" style="z-index: -1;">
+					<div class="text no2">
+						<p>서울북부지역 장애인분들의 건강을 위해</p>
+						<h3>
+							더 가깝게 더 친근하게<br>
+							<b>한 걸음씩 새로운 길로</b><br>
+							나아가겠습니다.<br>
+						</h3>
+					</div>
+					<img src="/resource/images/boss.png" alt="">
+				</div>
+				<p class="help-text text-deepblue">
+					안녕하세요.<br>
+					서울특별시북부지역장애인보건의료센터장 이규범입니다. <br>
+					홈페이지를 방문해 주신 여러분을 진심으로 환영합니다.
+				</p>
+				<p class="help-text">
+					서울특별시북부지역장애인보건의료센터는 “장애인 건강권 및 의료접근성보장에 관한 법률”에 따라 2019년 4월에 “서울재활병원”이 지정되어, <br class="mo-hide">
+					그 해 7월부터 서울북부지역 14개구 장애인분들의 건강을 위해 건강보건관리사업, 여성장애인 모성보건사업, 교육사업, 재활 등의 의료서비스 제공 사업을
+					시행하고 있습니다. 또한 서울북부지역의 다양한 보건∙의료∙복지기관, 장애관련 협회 등과 네트워크를 형성하여 서비스를 제공하고 있습니다.
+				</p>
+				<p class="help-text">
+					특히 보건소 지역사회중심재활사업과 긴밀한 협력∙지원을 통해 지역사회 장애인분들을 위한 보건∙의료∙복지 인프라를 형성하는데 노력을 기울이고 있습니다.<br>
+					이곳 서울특별시북부지역장애인보건의료센터 홈페이지를 플랫폼으로 삼아 협력기관과 이용 장애인분들에게 더 가깝고 친근하게 다가갈 수 있도록 하겠습니다.<br>
+					서울북부지역 장애인분들의 건강을 위해 꾸준히 한걸음씩 새로운 길을 걸어 나가겠습니다. <br class="mo-show">
+					그 길에 함께 해주시고 응원해 주십시오.<br>
+					<br>
+					감사합니다.
+				</p>
+				<p class="help-text sign">
+					서울특별시북부지역장애인보건의료센터장 <img src="/resource/images/sign.png" alt="">
+				</p>
+			</div>
+			<!-- //end .s-inner -->
+		</section>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/footer.php"?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>
